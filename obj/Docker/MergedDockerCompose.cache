@@ -1,0 +1,24 @@
+services:
+  redis:
+    command: redis-server --requirepass 1234567890!
+    container_name: redisexperiment-redis
+    hostname: redis
+    image: redis
+    ports:
+    - published: 6379
+      target: 6379
+  redisexperiment:
+    build:
+      context: C:\desenv\RedisExperiment\RedisExperiment
+      dockerfile: RedisExperiment/Dockerfile
+    container_name: redisexperiment-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      RedisConnection: redis,password=1234567890!
+    image: redisexperiment
+    ports:
+    - published: 5002
+      target: 80
+    volumes:
+    - C:\Users\mathe\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  redisexperiment:
+    container_name: redisexperiment-api
+    image: ${DOCKER_REGISTRY-}redisexperiment
+    environment:
+      - "RedisConnection=redis,password=1234567890!"
+    build:
+      context: .
+      dockerfile: RedisExperiment/Dockerfile
+  redis:
+    container_name: redisexperiment-redis
+    hostname: redis
+    image: redis
+    command: redis-server --requirepass 1234567890!
