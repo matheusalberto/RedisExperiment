@@ -1,2 +1,2 @@
 # RedisExperiment
-API simple project using Reds and docker.
+API simple project using Redis and docker.
